@@ -30,6 +30,7 @@ publish:
     username: $$DOCKER_USERNAME
     password: $$DOCKER_PASSWORD
     email: $$DOCKER_EMAIL
+    storage_driver: overlay
     repo: webhippie/traefik
     tag: latest
     when:
@@ -40,6 +41,7 @@ publish:
     username: $$DOCKER_USERNAME
     password: $$DOCKER_PASSWORD
     email: $$DOCKER_EMAIL
+    storage_driver: overlay
     repo: webhippie/traefik
     tag: $$TAG
     when:
