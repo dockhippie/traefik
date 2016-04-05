@@ -21,10 +21,6 @@ build:
       - make gen
       - make build
 
-cache:
-  mount:
-    - /drone/src/github.com/containous/traefik/vendor
-
 publish:
   docker:
     username: $$DOCKER_USERNAME
