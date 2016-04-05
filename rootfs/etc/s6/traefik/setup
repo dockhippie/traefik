@@ -1,0 +1,204 @@
+#!/bin/bash
+
+declare -x TRAEFIK_ACCESS_LOGS
+declare -x TRAEFIK_DAEMON_LOGS
+declare -x TRAEFIK_LOG_LEVEL
+declare -x TRAEFIK_CONFIG_FILE
+declare -x TRAEFIK_DEFAULT_ENTRYPOINTS
+declare -x TRAEFIK_ENTRYPOINTS
+declare -x TRAEFIK_GRACE_TIMEOUT
+declare -x TRAEFIK_MAX_IDLECONNS
+declare -x TRAEFIK_THROTTLE_DURATION
+declare -x TRAEFIK_WEB_ENABLED
+declare -x TRAEFIK_WEB_ADDRESS
+declare -x TRAEFIK_WEB_CERT
+declare -x TRAEFIK_WEB_KEY
+declare -x TRAEFIK_WEB_READONLY
+declare -x TRAEFIK_FILE_ENABLED
+declare -x TRAEFIK_FILE_NAME
+declare -x TRAEFIK_FILE_WATCH
+declare -x TRAEFIK_BOLTDB_ENABLED
+declare -x TRAEFIK_BOLTDB_ENDPOINT
+declare -x TRAEFIK_BOLTDB_FILENAME
+declare -x TRAEFIK_BOLTDB_PREFIX
+declare -x TRAEFIK_BOLTDB_WATCH
+declare -x TRAEFIK_MARATHON_ENABLED
+declare -x TRAEFIK_MARATHON_DOMAIN
+declare -x TRAEFIK_MARATHON_ENDPOINT
+declare -x TRAEFIK_MARATHON_EXPOSED
+declare -x TRAEFIK_MARATHON_FILENAME
+declare -x TRAEFIK_MARATHON_WATCH
+declare -x TRAEFIK_ZOOKEEPER_ENABLED
+declare -x TRAEFIK_ZOOKEEPER_ENDPOINT
+declare -x TRAEFIK_ZOOKEEPER_FILENAME
+declare -x TRAEFIK_ZOOKEEPER_PREFIX
+declare -x TRAEFIK_ZOOKEEPER_WATCH
+declare -x TRAEFIK_CONSULCATALOG_ENABLED
+declare -x TRAEFIK_CONSULCATALOG_DOMAIN
+declare -x TRAEFIK_CONSULCATALOG_ENDPOINT
+declare -x TRAEFIK_CONSUL_ENABLED
+declare -x TRAEFIK_CONSUL_ENDPOINT
+declare -x TRAEFIK_CONSUL_FILENAME
+declare -x TRAEFIK_CONSUL_PREFIX
+declare -x TRAEFIK_CONSUL_CA
+declare -x TRAEFIK_CONSUL_CERT
+declare -x TRAEFIK_CONSUL_KEY
+declare -x TRAEFIK_CONSUL_SKIPVERIFY
+declare -x TRAEFIK_CONSUL_WATCH
+declare -x TRAEFIK_DOCKER_ENABLED
+declare -x TRAEFIK_DOCKER_DOMAIN
+declare -x TRAEFIK_DOCKER_ENDPOINT
+declare -x TRAEFIK_DOCKER_FILENAME
+declare -x TRAEFIK_DOCKER_CA
+declare -x TRAEFIK_DOCKER_CERT
+declare -x TRAEFIK_DOCKER_KEY
+declare -x TRAEFIK_DOCKER_SKIPVERIFY
+declare -x TRAEFIK_DOCKER_WATCH
+declare -x TRAEFIK_ETCD_ENABLED
+declare -x TRAEFIK_ETCD_ENDPOINT
+declare -x TRAEFIK_ETCD_FILENAME
+declare -x TRAEFIK_ETCD_PREFIX
+declare -x TRAEFIK_ETCD_CA
+declare -x TRAEFIK_ETCD_CERT
+declare -x TRAEFIK_ETCD_KEY
+declare -x TRAEFIK_ETCD_SKIPVERIFY
+declare -x TRAEFIK_ETCD_WATCH
+
+[[ -z "${TRAEFIK_ACCESS_LOGS}" ]] && TRAEFIK_ACCESS_LOGS="/dev/stdout"
+[[ -z "${TRAEFIK_DAEMON_LOGS}" ]] && TRAEFIK_DAEMON_LOGS="/dev/stdout"
+[[ -z "${TRAEFIK_LOG_LEVEL}" ]] && TRAEFIK_LOG_LEVEL="ERROR"
+[[ -z "${TRAEFIK_GRACE_TIMEOUT}" ]] && TRAEFIK_GRACE_TIMEOUT="10"
+[[ -z "${TRAEFIK_THROTTLE_DURATION}" ]] && TRAEFIK_THROTTLE_DURATION="2s"
+[[ -z "${TRAEFIK_WEB_ENABLED}" ]] && TRAEFIK_WEB_ENABLED="true"
+[[ -z "${TRAEFIK_WEB_ADDRESS}" ]] && TRAEFIK_WEB_ADDRESS="0.0.0.0:8080"
+[[ -z "${TRAEFIK_WEB_READONLY}" ]] && TRAEFIK_WEB_READONLY="true"
+[[ -z "${TRAEFIK_FILE_ENABLED}" ]] && TRAEFIK_FILE_ENABLED="false"
+[[ -z "${TRAEFIK_FILE_WATCH}" ]] && TRAEFIK_FILE_ENABLED="true"
+[[ -z "${TRAEFIK_BOLTDB_ENABLED}" ]] && TRAEFIK_BOLTDB_ENABLED="false"
+[[ -z "${TRAEFIK_BOLTDB_ENDPOINT}" ]] && TRAEFIK_BOLTDB_ENDPOINT="127.0.0.1:4001"
+[[ -z "${TRAEFIK_BOLTDB_PREFIX}" ]] && TRAEFIK_BOLTDB_PREFIX="/traefik"
+[[ -z "${TRAEFIK_BOLTDB_WATCH}" ]] && TRAEFIK_BOLTDB_WATCH="true"
+[[ -z "${TRAEFIK_MARATHON_ENABLED}" ]] && TRAEFIK_MARATHON_ENABLED="false"
+[[ -z "${TRAEFIK_MARATHON_ENABLED}" ]] && TRAEFIK_MARATHON_ENABLED="false"
+[[ -z "${TRAEFIK_MARATHON_ENDPOINT}" ]] && TRAEFIK_MARATHON_ENDPOINT="http://127.0.0.1:8080"
+[[ -z "${TRAEFIK_MARATHON_EXPOSED}" ]] && TRAEFIK_MARATHON_EXPOSED="true"
+[[ -z "${TRAEFIK_MARATHON_WATCH}" ]] && TRAEFIK_MARATHON_WATCH="true"
+[[ -z "${TRAEFIK_ZOOKEEPER_ENABLED}" ]] && TRAEFIK_ZOOKEEPER_ENABLED="false"
+[[ -z "${TRAEFIK_ZOOKEEPER_ENDPOINT}" ]] && TRAEFIK_ZOOKEEPER_ENDPOINT="127.0.0.1:2181"
+[[ -z "${TRAEFIK_ZOOKEEPER_PREFIX}" ]] && TRAEFIK_ZOOKEEPER_PREFIX="/traefik"
+[[ -z "${TRAEFIK_ZOOKEEPER_WATCH}" ]] && TRAEFIK_ZOOKEEPER_WATCH="true"
+[[ -z "${TRAEFIK_CONSULCATALOG_ENABLED}" ]] && TRAEFIK_CONSULCATALOG_ENABLED="false"
+[[ -z "${TRAEFIK_CONSULCATALOG_ENDPOINT}" ]] && TRAEFIK_CONSULCATALOG_ENABLED="127.0.0.1:8500"
+[[ -z "${TRAEFIK_CONSUL_ENABLED}" ]] && TRAEFIK_CONSUL_ENABLED="false"
+[[ -z "${TRAEFIK_CONSUL_ENDPOINT}" ]] && TRAEFIK_CONSUL_ENDPOINT="127.0.0.1:8500"
+[[ -z "${TRAEFIK_CONSUL_PREFIX}" ]] && TRAEFIK_CONSUL_PREFIX="/traefik"
+[[ -z "${TRAEFIK_CONSUL_SKIPVERIFY}" ]] && TRAEFIK_CONSUL_SKIPVERIFY="false"
+[[ -z "${TRAEFIK_CONSUL_WATCH}" ]] && TRAEFIK_CONSUL_WATCH="true"
+[[ -z "${TRAEFIK_DOCKER_ENABLED}" ]] && TRAEFIK_DOCKER_ENABLED="false"
+[[ -z "${TRAEFIK_DOCKER_ENDPOINT}" ]] && TRAEFIK_DOCKER_ENDPOINT="unix:///var/run/docker.sock"
+[[ -z "${TRAEFIK_DOCKER_SKIPVERIFY}" ]] && TRAEFIK_DOCKER_SKIPVERIFY="false"
+[[ -z "${TRAEFIK_DOCKER_WATCH}" ]] && TRAEFIK_DOCKER_WATCH="true"
+[[ -z "${TRAEFIK_ETCD_ENABLED}" ]] && TRAEFIK_ETCD_ENABLED="false"
+[[ -z "${TRAEFIK_ETCD_ENDPOINT}" ]] && TRAEFIK_ETCD_ENDPOINT="127.0.0.1:4001"
+[[ -z "${TRAEFIK_ETCD_PREFIX}" ]] && TRAEFIK_ETCD_PREFIX="/traefik"
+[[ -z "${TRAEFIK_ETCD_SKIPVERIFY}" ]] && TRAEFIK_ETCD_SKIPVERIFY="false"
+[[ -z "${TRAEFIK_ETCD_WATCH}" ]] && TRAEFIK_ETCD_WATCH="true"
+
+if [ -n "${TRAEFIK_WEB_CERT}" ]
+then
+  if [ ! -f "${TRAEFIK_WEB_CERT}" ]
+  then
+    echo -e "${TRAEFIK_WEB_CERT}" >| /tmp/web.crt
+    TRAEFIK_WEB_CERT="/tmp/web.crt"
+  fi
+fi
+
+if [ -n "${TRAEFIK_WEB_KEY}" ]
+then
+  if [ ! -f "${TRAEFIK_WEB_KEY}" ]
+  then
+    echo -e "${TRAEFIK_WEB_KEY}" >| /tmp/web.key
+    TRAEFIK_WEB_KEY="/tmp/web.key"
+  fi
+fi
+
+if [ -n "${TRAEFIK_CONSUL_CA}" ]
+then
+  if [ ! -f "${TRAEFIK_CONSUL_CA}" ]
+  then
+    echo -e "${TRAEFIK_CONSUL_CA}" >| /tmp/consul.ca
+    TRAEFIK_CONSUL_CA="/tmp/consul.ca"
+  fi
+fi
+
+if [ -n "${TRAEFIK_CONSUL_CERT}" ]
+then
+  if [ ! -f "${TRAEFIK_CONSUL_CERT}" ]
+  then
+    echo -e "${TRAEFIK_CONSUL_CERT}" >| /tmp/consul.crt
+    TRAEFIK_CONSUL_CERT="/tmp/consul.crt"
+  fi
+fi
+
+if [ -n "${TRAEFIK_CONSUL_KEY}" ]
+then
+  if [ ! -f "${TRAEFIK_CONSUL_KEY}" ]
+  then
+    echo -e "${TRAEFIK_CONSUL_KEY}" >| /tmp/consul.key
+    TRAEFIK_CONSUL_KEY="/tmp/consul.key"
+  fi
+fi
+
+if [ -n "${TRAEFIK_DOCKER_CA}" ]
+then
+  if [ ! -f "${TRAEFIK_DOCKER_CA}" ]
+  then
+    echo -e "${TRAEFIK_DOCKER_CA}" >| /tmp/docker.ca
+    TRAEFIK_DOCKER_CA="/tmp/docker.ca"
+  fi
+fi
+
+if [ -n "${TRAEFIK_DOCKER_CERT}" ]
+then
+  if [ ! -f "${TRAEFIK_DOCKER_CERT}" ]
+  then
+    echo -e "${TRAEFIK_DOCKER_CERT}" >| /tmp/docker.crt
+    TRAEFIK_DOCKER_CERT="/tmp/docker.crt"
+  fi
+fi
+
+if [ -n "${TRAEFIK_DOCKER_KEY}" ]
+then
+  if [ ! -f "${TRAEFIK_DOCKER_KEY}" ]
+  then
+    echo -e "${TRAEFIK_DOCKER_KEY}" >| /tmp/docker.key
+    TRAEFIK_DOCKER_KEY="/tmp/docker.key"
+  fi
+fi
+
+if [ -n "${TRAEFIK_ETCD_CA}" ]
+then
+  if [ ! -f "${TRAEFIK_ETCD_CA}" ]
+  then
+    echo -e "${TRAEFIK_ETCD_CA}" >| /tmp/etcd.ca
+    TRAEFIK_ETCD_CA="/tmp/etcd.ca"
+  fi
+fi
+
+if [ -n "${TRAEFIK_ETCD_CERT}" ]
+then
+  if [ ! -f "${TRAEFIK_ETCD_CERT}" ]
+  then
+    echo -e "${TRAEFIK_ETCD_CERT}" >| /tmp/etcd.crt
+    TRAEFIK_ETCD_CERT="/tmp/etcd.crt"
+  fi
+fi
+
+if [ -n "${TRAEFIK_ETCD_KEY}" ]
+then
+  if [ ! -f "${TRAEFIK_ETCD_KEY}" ]
+  then
+    echo -e "${TRAEFIK_ETCD_KEY}" >| /tmp/etcd.key
+    TRAEFIK_ETCD_KEY="/tmp/etcd.key"
+  fi
+fi

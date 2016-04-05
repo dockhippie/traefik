@@ -1,0 +1,137 @@
+#!/bin/bash
+
+if [ -f ./setup ]
+then
+  source ./setup
+fi
+
+STARTCMD="/usr/bin/traefik"
+
+[[ -n "${TRAEFIK_ACCESS_LOGS}" ]] && STARTCMD="${STARTCMD} --accessLogsFile ${TRAEFIK_ACCESS_LOGS}"
+[[ -n "${TRAEFIK_DAEMON_LOGS}" ]] && STARTCMD="${STARTCMD} --traefikLogsFile ${TRAEFIK_DAEMON_LOGS}"
+[[ -n "${TRAEFIK_LOG_LEVEL}" ]] && STARTCMD="${STARTCMD} --logLevel ${TRAEFIK_LOG_LEVEL}"
+[[ -n "${TRAEFIK_CONFIG_FILE}" ]] && STARTCMD="${STARTCMD} --configFile ${TRAEFIK_CONFIG_FILE}"
+[[ -n "${TRAEFIK_DEFAULT_ENTRYPOINTS}" ]] && STARTCMD="${STARTCMD} --defaultEntryPoints ${TRAEFIK_DEFAULT_ENTRYPOINTS}"
+[[ -n "${TRAEFIK_ENTRYPOINTS}" ]] && STARTCMD="${STARTCMD} --entryPoints ${TRAEFIK_ENTRYPOINTS}"
+[[ -n "${TRAEFIK_GRACE_TIMEOUT}" ]] && STARTCMD="${STARTCMD} --graceTimeOut ${TRAEFIK_GRACE_TIMEOUT}"
+[[ -n "${TRAEFIK_MAX_IDLECONNS}" ]] && STARTCMD="${STARTCMD} --maxIdleConnsPerHost ${TRAEFIK_MAX_IDLECONNS}"
+[[ -n "${TRAEFIK_THROTTLE_DURATION}" ]] && STARTCMD="${STARTCMD} --providersThrottleDuration ${TRAEFIK_THROTTLE_DURATION}"
+
+if [[ "${TRAEFIK_WEB_ENABLED}" == "true" ]]
+then
+  STARTCMD="${STARTCMD} --web"
+
+  [[ -n "${TRAEFIK_WEB_ADDRESS}" ]] && STARTCMD="${STARTCMD} --web.address ${TRAEFIK_WEB_ADDRESS}"
+  [[ -n "${TRAEFIK_WEB_CERT}" ]] && STARTCMD="${STARTCMD} --web.cerFile ${TRAEFIK_WEB_CERT}"
+  [[ -n "${TRAEFIK_WEB_KEY}" ]] && STARTCMD="${STARTCMD} --web.keyFile ${TRAEFIK_WEB_KEY}"
+  [[ -n "${TRAEFIK_WEB_READONLY}" && "${TRAEFIK_WEB_ENABLED}" == "true" ]] && STARTCMD="${STARTCMD} --web.readOnly"
+fi
+
+if [[ "${TRAEFIK_FILE_ENABLED}" == "true" ]]
+then
+  STARTCMD="${STARTCMD} --file"
+
+  [[ -n "${TRAEFIK_FILE_NAME}" ]] && STARTCMD="${STARTCMD} --file.filename ${TRAEFIK_FILE_NAME}"
+  [[ -n "${TRAEFIK_FILE_WATCH}" && "${TRAEFIK_FILE_WATCH}" == "true" ]] && STARTCMD="${STARTCMD} --file.watch"
+fi
+
+if [[ "${TRAEFIK_BOLTDB_ENABLED}" == "true" ]]
+then
+  STARTCMD="${STARTCMD} --boltdb"
+
+  [[ -n "${TRAEFIK_BOLTDB_ENDPOINT}" ]] && STARTCMD="${STARTCMD} --boltdb.endpoint ${TRAEFIK_BOLTDB_ENDPOINT}"
+  [[ -n "${TRAEFIK_BOLTDB_FILENAME}" ]] && STARTCMD="${STARTCMD} --boltdb.filename ${TRAEFIK_BOLTDB_FILENAME}"
+  [[ -n "${TRAEFIK_BOLTDB_PREFIX}" ]] && STARTCMD="${STARTCMD} --boltdb.prefix ${TRAEFIK_BOLTDB_PREFIX}"
+  [[ -n "${TRAEFIK_BOLTDB_WATCH}" && "${TRAEFIK_BOLTDB_WATCH}" == "true" ]] && STARTCMD="${STARTCMD} --boltdb.watch"
+fi
+
+if [[ "${TRAEFIK_MARATHON_ENABLED}" == "true" ]]
+then
+  STARTCMD="${STARTCMD} --marathon"
+
+  [[ -n "${TRAEFIK_MARATHON_DOMAIN}" ]] && STARTCMD="${STARTCMD} --marathon.domain ${TRAEFIK_MARATHON_DOMAIN}"
+  [[ -n "${TRAEFIK_MARATHON_ENDPOINT}" ]] && STARTCMD="${STARTCMD} --marathon.endpoint ${TRAEFIK_MARATHON_ENDPOINT}"
+  [[ -n "${TRAEFIK_MARATHON_EXPOSED}" ]] && STARTCMD="${STARTCMD} --marathon.exposedByDefault ${TRAEFIK_MARATHON_EXPOSED}"
+  [[ -n "${TRAEFIK_MARATHON_FILENAME}" ]] && STARTCMD="${STARTCMD} --marathon.filename ${TRAEFIK_MARATHON_FILENAME}"
+  [[ -n "${TRAEFIK_MARATHON_WATCH}" && "${TRAEFIK_MARATHON_WATCH}" == "true" ]] && STARTCMD="${STARTCMD} --marathon.watch"
+fi
+
+if [[ "${TRAEFIK_ZOOKEEPER_ENABLED}" == "true" ]]
+then
+  STARTCMD="${STARTCMD} --zookeeper"
+
+  [[ -n "${TRAEFIK_ZOOKEEPER_ENDPOINT}" ]] && STARTCMD="${STARTCMD} --zookeeper.endpoint ${TRAEFIK_ZOOKEEPER_ENDPOINT}"
+  [[ -n "${TRAEFIK_ZOOKEEPER_FILENAME}" ]] && STARTCMD="${STARTCMD} --zookeeper.filename ${TRAEFIK_ZOOKEEPER_FILENAME}"
+  [[ -n "${TRAEFIK_ZOOKEEPER_PREFIX}" ]] && STARTCMD="${STARTCMD} --zookeeper.prefix ${TRAEFIK_ZOOKEEPER_PREFIX}"
+  [[ -n "${TRAEFIK_ZOOKEEPER_WATCH}" && "${TRAEFIK_ZOOKEEPER_WATCH}" == "true" ]] && STARTCMD="${STARTCMD} --zookeeper.watch"
+fi
+
+if [[ "${TRAEFIK_CONSULCATALOG_ENABLED}" == "true" ]]
+then
+  STARTCMD="${STARTCMD} --consulCatalog"
+
+  [[ -n "${TRAEFIK_CONSULCATALOG_DOMAIN}" ]] && STARTCMD="${STARTCMD} --consulCatalog.domain ${TRAEFIK_CONSULCATALOG_DOMAIN}"
+  [[ -n "${TRAEFIK_CONSULCATALOG_ENDPOINT}" ]] && STARTCMD="${STARTCMD} --consulCatalog.endpoint ${TRAEFIK_CONSULCATALOG_ENDPOINT}"
+fi
+
+if [[ "${TRAEFIK_CONSUL_ENABLED}" == "true" ]]
+then
+  STARTCMD="${STARTCMD} --consul"
+
+  [[ -n "${TRAEFIK_CONSUL_ENDPOINT}" ]] && STARTCMD="${STARTCMD} --consul.endpoint ${TRAEFIK_CONSUL_ENDPOINT}"
+  [[ -n "${TRAEFIK_CONSUL_FILENAME}" ]] && STARTCMD="${STARTCMD} --consul.filename ${TRAEFIK_CONSUL_FILENAME}"
+  [[ -n "${TRAEFIK_CONSUL_PREFIX}" ]] && STARTCMD="${STARTCMD} --consul.prefix ${TRAEFIK_CONSUL_PREFIX}"
+  [[ -n "${TRAEFIK_CONSUL_WATCH}" && "${TRAEFIK_CONSUL_WATCH}" == "true" ]] && STARTCMD="${STARTCMD} --consul.watch"
+
+  if [[ -n "${TRAEFIK_CONSUL_CA}" || -n "${TRAEFIK_CONSUL_CERT}" || -n "${TRAEFIK_CONSUL_KEY}" ]]
+  then
+    STARTCMD="${STARTCMD} --consul.tls"
+
+    [[ -n "${TRAEFIK_CONSUL_CA}" ]] && STARTCMD="${STARTCMD} --consul.tls.ca ${TRAEFIK_CONSUL_CA}"
+    [[ -n "${TRAEFIK_CONSUL_CERT}" ]] && STARTCMD="${STARTCMD} --consul.tls.cert ${TRAEFIK_CONSUL_CERT}"
+    [[ -n "${TRAEFIK_CONSUL_KEY}" ]] && STARTCMD="${STARTCMD} --consul.tls.key ${TRAEFIK_CONSUL_KEY}"
+    [[ -n "${TRAEFIK_CONSUL_SKIPVERIFY}" && "${TRAEFIK_CONSUL_SKIPVERIFY}" == "true" ]] && STARTCMD="${STARTCMD} --consul.tls.insecureSkipVerify"
+  fi
+fi
+
+if [[ "${TRAEFIK_DOCKER_ENABLED}" == "true" ]]
+then
+  STARTCMD="${STARTCMD} --docker"
+
+  [[ -n "${TRAEFIK_DOCKER_DOMAIN}" ]] && STARTCMD="${STARTCMD} --docker.domain ${TRAEFIK_DOCKER_DOMAIN}"
+  [[ -n "${TRAEFIK_DOCKER_ENDPOINT}" ]] && STARTCMD="${STARTCMD} --docker.endpoint ${TRAEFIK_DOCKER_ENDPOINT}"
+  [[ -n "${TRAEFIK_DOCKER_FILENAME}" ]] && STARTCMD="${STARTCMD} --docker.filename ${TRAEFIK_DOCKER_FILENAME}"
+  [[ -n "${TRAEFIK_DOCKER_WATCH}" && "${TRAEFIK_DOCKER_WATCH}" == "true" ]] && STARTCMD="${STARTCMD} --docker.watch"
+
+  if [[ -n "${TRAEFIK_DOCKER_CA}" || -n "${TRAEFIK_DOCKER_CERT}" || -n "${TRAEFIK_DOCKER_KEY}" ]]
+  then
+    STARTCMD="${STARTCMD} --docker.tls"
+
+    [[ -n "${TRAEFIK_DOCKER_CA}" ]] && STARTCMD="${STARTCMD} --docker.tls.ca ${TRAEFIK_DOCKER_CA}"
+    [[ -n "${TRAEFIK_DOCKER_CERT}" ]] && STARTCMD="${STARTCMD} --docker.tls.cert ${TRAEFIK_DOCKER_CERT}"
+    [[ -n "${TRAEFIK_DOCKER_KEY}" ]] && STARTCMD="${STARTCMD} --docker.tls.key ${TRAEFIK_DOCKER_KEY}"
+    [[ -n "${TRAEFIK_DOCKER_SKIPVERIFY}" && "${TRAEFIK_DOCKER_SKIPVERIFY}" == "true" ]] && STARTCMD="${STARTCMD} --docker.tls.insecureSkipVerify"
+  fi
+fi
+
+if [[ "${TRAEFIK_ETCD_ENABLED}" == "true" ]]
+then
+  STARTCMD="${STARTCMD} --etcd"
+
+  [[ -n "${TRAEFIK_ETCD_ENDPOINT}" ]] && STARTCMD="${STARTCMD} --etcd.endpoint ${TRAEFIK_ETCD_ENDPOINT}"
+  [[ -n "${TRAEFIK_ETCD_FILENAME}" ]] && STARTCMD="${STARTCMD} --etcd.filename ${TRAEFIK_ETCD_FILENAME}"
+  [[ -n "${TRAEFIK_ETCD_PREFIX}" ]] && STARTCMD="${STARTCMD} --etcd.prefix ${TRAEFIK_ETCD_PREFIX}"
+  [[ -n "${TRAEFIK_ETCD_WATCH}" && "${TRAEFIK_ETCD_WATCH}" == "true" ]] && STARTCMD="${STARTCMD} --etcd.watch"
+
+  if [[ -n "${TRAEFIK_ETCD_CA}" || -n "${TRAEFIK_ETCD_CERT}" || -n "${TRAEFIK_ETCD_KEY}" ]]
+  then
+    STARTCMD="${STARTCMD} --etcd.tls"
+
+    [[ -n "${TRAEFIK_ETCD_CA}" ]] && STARTCMD="${STARTCMD} --etcd.tls.ca ${TRAEFIK_ETCD_CA}"
+    [[ -n "${TRAEFIK_ETCD_CERT}" ]] && STARTCMD="${STARTCMD} --etcd.tls.cert ${TRAEFIK_ETCD_CERT}"
+    [[ -n "${TRAEFIK_ETCD_KEY}" ]] && STARTCMD="${STARTCMD} --etcd.tls.key ${TRAEFIK_ETCD_KEY}"
+    [[ -n "${TRAEFIK_ETCD_SKIPVERIFY}" && "${TRAEFIK_ETCD_SKIPVERIFY}" == "true" ]] && STARTCMD="${STARTCMD} --etcd.tls.insecureSkipVerify"
+  fi
+fi
+
+exec ${STARTCMD}
