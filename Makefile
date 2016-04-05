@@ -10,8 +10,7 @@ prep:
 	go get -u github.com/jteeuwen/go-bindata/...
 
 clone:
-	go get -d $(USED_IMPORT)
-	cd $(USED_PATH) && git checkout $(USED_BRANCH)
+	git clone -b $(USED_BRANCH) $(USED_REPO) $(USED_PATH)
 
 deps:
 	cd $(USED_PATH) && glide install
