@@ -202,3 +202,21 @@ then
     TRAEFIK_ETCD_KEY="/tmp/etcd.key"
   fi
 fi
+
+if [[ "${TRAEFIK_ETCD_ENABLED}" == "true" ]]
+then
+  CMD="/usr/bin/curl -L -X PUT -d dir=true"
+
+  if [[ -n "${TRAEFIK_ETCD_CA}" || -n "${TRAEFIK_ETCD_CERT}" || -n "${TRAEFIK_ETCD_KEY}" ]]
+  then
+    [[ -n "${TRAEFIK_ETCD_CA}" ]] && CMD="${CMD} --cacert ${TRAEFIK_ETCD_CA}"
+    [[ -n "${TRAEFIK_ETCD_CERT}" ]] && CMD="${CMD} --cert ${TRAEFIK_ETCD_CERT}"
+    [[ -n "${TRAEFIK_ETCD_KEY}" ]] && CMD="${CMD} --key ${TRAEFIK_ETCD_KEY}"
+
+    CMD="${CMD} https://${TRAEFIK_ETCD_ENDPOINT}/v2/keys${TRAEFIK_ETCD_PREFIX}"
+  else
+    CMD="${CMD} http://${TRAEFIK_ETCD_ENDPOINT}/v2/keys${TRAEFIK_ETCD_PREFIX}"
+  fi
+
+  exec ${CMD}
+fi
