@@ -1,9 +1,9 @@
 export GO15VENDOREXPERIMENT=1
 
 USED_IMPORT ?= github.com/containous/traefik
-USED_REPO ?= https://$(USED_IMPORT).git
+USED_REPO ?= https://github.com/tboerger/traefik.git
 USED_PATH ?= /drone/src/$(USED_IMPORT)
-USED_BRANCH ?= master
+USED_BRANCH ?= feature/libkv-update
 
 prep:
 	go get -u github.com/Masterminds/glide
