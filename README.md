@@ -11,6 +11,27 @@ These are docker images for [Træfɪk](https://traefik.io/) running on an
 * [latest](https://github.com/dockhippie/traefik/tree/master)
   available as ```webhippie/traefik:latest``` at
   [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
+* [1.1.2](https://github.com/dockhippie/traefik/tree/1.1.2)
+  available as ```webhippie/traefik:1.1.2``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
+* [1.1.1](https://github.com/dockhippie/traefik/tree/1.1.1)
+  available as ```webhippie/traefik:1.1.1``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
+* [1.1.0](https://github.com/dockhippie/traefik/tree/1.1.0)
+  available as ```webhippie/traefik:1.1.0``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
+* [1.0.3](https://github.com/dockhippie/traefik/tree/1.0.3)
+  available as ```webhippie/traefik:1.0.3``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
+* [1.0.2](https://github.com/dockhippie/traefik/tree/1.0.2)
+  available as ```webhippie/traefik:1.0.2``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
+* [1.0.1](https://github.com/dockhippie/traefik/tree/1.0.1)
+  available as ```webhippie/traefik:1.0.1``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
+* [1.0.0](https://github.com/dockhippie/traefik/tree/1.0.0)
+  available as ```webhippie/traefik:1.0.0``` at
+  [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
 
 
 ## Volumes
