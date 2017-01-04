@@ -58,6 +58,9 @@ RUN apk update && \
     python && \
   rm -rf \
     /var/cache/apk/* \
-    /usr/local/*
+    /usr/local/* \
+    /root/.glide \
+    /root/.node-gyp \
+    /root/.npm
 
 ADD rootfs /
