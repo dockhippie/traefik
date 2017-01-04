@@ -10,7 +10,7 @@ CMD ["/bin/s6-svscan", "/etc/s6"]
 
 ENV TRAEFIK_PATH github.com/containous/traefik
 ENV TRAEFIK_REPO https://${TRAEFIK_PATH}.git
-ENV TRAEFIK_BRANCH master
+ENV TRAEFIK_BRANCH v1.0.1
 
 ENV GOPATH /usr/local
 

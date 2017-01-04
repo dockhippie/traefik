@@ -1,6 +1,6 @@
 # Træfɪk
 
-[![](https://images.microbadger.com/badges/image/webhippie/traefik.svg)](https://microbadger.com/images/webhippie/traefik "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/webhippie/traefik:1.0.1.svg)](https://microbadger.com/images/webhippie/traefik:1.0.1 "Get your own image badge on microbadger.com")
 
 These are docker images for [Træfɪk](https://traefik.io/) running on an [Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
 
