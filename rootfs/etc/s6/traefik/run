@@ -23,6 +23,8 @@ then
   [[ -n "${TRAEFIK_ACME_ONDEMAND}" ]] && STARTCMD="${STARTCMD} --acme.ondemand=${TRAEFIK_ACME_ONDEMAND}"
   [[ -n "${TRAEFIK_ACME_ONHOSTRULE}" ]] && STARTCMD="${STARTCMD} --acme.onhostrule=${TRAEFIK_ACME_ONHOSTRULE}"
   [[ -n "${TRAEFIK_ACME_STORAGE}" ]] && STARTCMD="${STARTCMD} --acme.storage=${TRAEFIK_ACME_STORAGE}"
+else
+  STARTCMD="${STARTCMD} --acme=false"
 fi
 
 if [[ "${TRAEFIK_BOLTDB_ENABLED}" == "true" ]]
@@ -44,6 +46,8 @@ then
     [[ -n "${TRAEFIK_BOLTDB_KEY}" ]] && STARTCMD="${STARTCMD} --boltdb.tls.key=${TRAEFIK_BOLTDB_KEY}"
     [[ -n "${TRAEFIK_BOLTDB_SKIPVERIFY}" ]] && STARTCMD="${STARTCMD} --boltdb.tls.insecureskipverify=${TRAEFIK_BOLTDB_SKIPVERIFY}"
   fi
+else
+  STARTCMD="${STARTCMD} --boltdb=false"
 fi
 
 if [[ "${TRAEFIK_CLUSTER_ENABLED}" == "true" ]]
@@ -51,6 +55,8 @@ then
   STARTCMD="${STARTCMD} --cluster"
 
   [[ -n "${TRAEFIK_CLUSTER_NODE}" ]] && STARTCMD="${STARTCMD} --cluster.node=${TRAEFIK_CLUSTER_NODE}"
+else
+  STARTCMD="${STARTCMD} --cluster=false"
 fi
 
 [[ -n "${TRAEFIK_CONFIG_FILE}" ]] && STARTCMD="${STARTCMD} --configfile=${TRAEFIK_CONFIG_FILE}"
@@ -75,6 +81,8 @@ then
     [[ -n "${TRAEFIK_CONSUL_KEY}" ]] && STARTCMD="${STARTCMD} --consul.tls.key=${TRAEFIK_CONSUL_KEY}"
     [[ -n "${TRAEFIK_CONSUL_SKIPVERIFY}" ]] && STARTCMD="${STARTCMD} --consul.tls.insecureskipverify=${TRAEFIK_CONSUL_SKIPVERIFY}"
   fi
+else
+  STARTCMD="${STARTCMD} --consul=false"
 fi
 
 if [[ "${TRAEFIK_CONSULCATALOG_ENABLED}" == "true" ]]
@@ -86,6 +94,8 @@ then
   [[ -n "${TRAEFIK_CONSULCATALOG_ENDPOINT}" ]] && STARTCMD="${STARTCMD} --consulcatalog.endpoint=${TRAEFIK_CONSULCATALOG_ENDPOINT}"
   [[ -n "${TRAEFIK_CONSULCATALOG_FILENAME}" ]] && STARTCMD="${STARTCMD} --consulcatalog.filename=${TRAEFIK_CONSULCATALOG_FILENAME}"
   [[ -n "${TRAEFIK_CONSULCATALOG_WATCH}" ]] && STARTCMD="${STARTCMD} --consulcatalog.watch=${TRAEFIK_CONSULCATALOG_WATCH}"
+else
+  STARTCMD="${STARTCMD} --consulcatalog=false"
 fi
 
 [[ -n "${TRAEFIK_DEBUG}" ]] && STARTCMD="${STARTCMD} --debug=${TRAEFIK_DEBUG}"
@@ -113,6 +123,8 @@ then
     [[ -n "${TRAEFIK_DOCKER_KEY}" ]] && STARTCMD="${STARTCMD} --docker.tls.key=${TRAEFIK_DOCKER_KEY}"
     [[ -n "${TRAEFIK_DOCKER_SKIPVERIFY}" ]] && STARTCMD="${STARTCMD} --docker.tls.insecureskipverify=${TRAEFIK_DOCKER_SKIPVERIFY}"
   fi
+else
+  STARTCMD="${STARTCMD} --docker=false"
 fi
 
 [[ -n "${TRAEFIK_ENTRYPOINTS}" ]] && STARTCMD="${STARTCMD} --entrypoints=${TRAEFIK_ENTRYPOINTS}"
@@ -136,6 +148,8 @@ then
     [[ -n "${TRAEFIK_ETCD_KEY}" ]] && STARTCMD="${STARTCMD} --etcd.tls.key=${TRAEFIK_ETCD_KEY}"
     [[ -n "${TRAEFIK_ETCD_SKIPVERIFY}" ]] && STARTCMD="${STARTCMD} --etcd.tls.insecureskipverify=${TRAEFIK_ETCD_SKIPVERIFY}"
   fi
+else
+  STARTCMD="${STARTCMD} --etcd=false"
 fi
 
 if [[ "${TRAEFIK_EUREKA_ENABLED}" == "true" ]]
@@ -145,6 +159,8 @@ then
   [[ -n "${TRAEFIK_EUREKA_CONSTRAINTS}" ]] && STARTCMD="${STARTCMD} --eureka.constraints=${TRAEFIK_EUREKA_CONSTRAINTS}"
   [[ -n "${TRAEFIK_EUREKA_FILENAME}" ]] && STARTCMD="${STARTCMD} --eureka.filename=${TRAEFIK_EUREKA_FILENAME}"
   [[ -n "${TRAEFIK_EUREKA_WATCH}" ]] && STARTCMD="${STARTCMD} --eureka.watch=${TRAEFIK_EUREKA_WATCH}"
+else
+  STARTCMD="${STARTCMD} --eureka=false"
 fi
 
 if [[ "${TRAEFIK_FILE_ENABLED}" == "true" ]]
@@ -154,6 +170,8 @@ then
   [[ -n "${TRAEFIK_FILE_CONSTRAINTS}" ]] && STARTCMD="${STARTCMD} --file.constraints=${TRAEFIK_FILE_CONSTRAINTS}"
   [[ -n "${TRAEFIK_FILE_NAME}" ]] && STARTCMD="${STARTCMD} --file.filename=${TRAEFIK_FILE_NAME}"
   [[ -n "${TRAEFIK_FILE_WATCH}" ]] && STARTCMD="${STARTCMD} --file.watch=${TRAEFIK_FILE_WATCH}"
+else
+  STARTCMD="${STARTCMD} --file=false"
 fi
 
 [[ -n "${TRAEFIK_GRACE_TIMEOUT}" ]] && STARTCMD="${STARTCMD} --gracetimeout=${TRAEFIK_GRACE_TIMEOUT}"
@@ -170,6 +188,8 @@ then
   [[ -n "${TRAEFIK_KUBERNETES_LABELSELECTOR}" ]] && STARTCMD="${STARTCMD} --kubernetes.labelselector=${TRAEFIK_KUBERNETES_LABELSELECTOR}"
   [[ -n "${TRAEFIK_KUBERNETES_NAMESPACES}" ]] && STARTCMD="${STARTCMD} --kubernetes.namespaces=${TRAEFIK_KUBERNETES_NAMESPACES}"
   [[ -n "${TRAEFIK_KUBERNETES_WATCH}" ]] && STARTCMD="${STARTCMD} --kubernetes.watch=${TRAEFIK_KUBERNETES_WATCH}"
+else
+  STARTCMD="${STARTCMD} --kubernetes=false"
 fi
 
 [[ -n "${TRAEFIK_LOG_LEVEL}" ]] && STARTCMD="${STARTCMD} --loglevel=${TRAEFIK_LOG_LEVEL}"
@@ -199,6 +219,8 @@ then
     [[ -n "${TRAEFIK_MARATHON_KEY}" ]] && STARTCMD="${STARTCMD} --marathon.tls.key=${TRAEFIK_MARATHON_KEY}"
     [[ -n "${TRAEFIK_MARATHON_SKIPVERIFY}" ]] && STARTCMD="${STARTCMD} --marathon.tls.insecureskipverify=${TRAEFIK_MARATHON_SKIPVERIFY}"
   fi
+else
+  STARTCMD="${STARTCMD} --marathon=false"
 fi
 
 [[ -n "${TRAEFIK_MAX_IDLECONNS}" ]] && STARTCMD="${STARTCMD} --maxIdleConnsPerHost=${TRAEFIK_MAX_IDLECONNS}"
@@ -218,6 +240,8 @@ then
   [[ -n "${TRAEFIK_MESOS_STATETIMEOUTSECOND}" ]] && STARTCMD="${STARTCMD} --mesos.statetimeoutsecond=${TRAEFIK_MESOS_STATETIMEOUTSECOND}"
   [[ -n "${TRAEFIK_MESOS_WATCH}" ]] && STARTCMD="${STARTCMD} --mesos.watch=${TRAEFIK_MESOS_WATCH}"
   [[ -n "${TRAEFIK_MESOS_ZKDETECTIONTIMEOUT}" ]] && STARTCMD="${STARTCMD} --mesos.zkdetectiontimeout=${TRAEFIK_MESOS_ZKDETECTIONTIMEOUT}"
+else
+  STARTCMD="${STARTCMD} --mesos=false"
 fi
 
 [[ -n "${TRAEFIK_THROTTLE_DURATION}" ]] && STARTCMD="${STARTCMD} --providersthrottleduration=${TRAEFIK_THROTTLE_DURATION}"
@@ -227,6 +251,8 @@ then
   STARTCMD="${STARTCMD} --retry"
 
   [[ -n "${TRAEFIK_RETRY_ATTEMPTS}" ]] && STARTCMD="${STARTCMD} --retry.attempts=${TRAEFIK_RETRY_ATTEMPTS}"
+else
+  STARTCMD="${STARTCMD} --retry=false"
 fi
 
 [[ -n "${TRAEFIK_DAEMON_LOGS}" ]] && STARTCMD="${STARTCMD} --traefiklogsfile=${TRAEFIK_DAEMON_LOGS}"
@@ -241,6 +267,8 @@ then
   [[ -n "${TRAEFIK_WEB_READONLY}" ]] && STARTCMD="${STARTCMD} --web.readonly=${TRAEFIK_WEB_ENABLED}"
   [[ -n "${TRAEFIK_WEB_STATISTICS}" ]] && STARTCMD="${STARTCMD} --web.statistics=${TRAEFIK_WEB_STATISTICS}"
   [[ -n "${TRAEFIK_WEB_STATISTICS_ERRORS}" ]] && STARTCMD="${STARTCMD} --web.statistics.recenterrors=${TRAEFIK_WEB_STATISTICS_ERRORS}"
+else
+  STARTCMD="${STARTCMD} --web=false"
 fi
 
 if [[ "${TRAEFIK_ZOOKEEPER_ENABLED}" == "true" ]]
@@ -262,6 +290,8 @@ then
     [[ -n "${TRAEFIK_ZOOKEEPER_KEY}" ]] && STARTCMD="${STARTCMD} --zookeeper.tls.key=${TRAEFIK_ZOOKEEPER_KEY}"
     [[ -n "${TRAEFIK_ZOOKEEPER_SKIPVERIFY}" ]] && STARTCMD="${STARTCMD} --zookeeper.tls.insecureskipverify=${TRAEFIK_ZOOKEEPER_SKIPVERIFY}"
   fi
+else
+  STARTCMD="${STARTCMD} --zookeeper=false"
 fi
 
 exec ${STARTCMD}
