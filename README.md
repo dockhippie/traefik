@@ -2,36 +2,19 @@
 
 [![](https://images.microbadger.com/badges/image/webhippie/traefik.svg)](https://microbadger.com/images/webhippie/traefik "Get your own image badge on microbadger.com")
 
-These are docker images for [Træfɪk](https://traefik.io/) running on an
-[Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
+These are docker images for [Træfɪk](https://traefik.io/) running on an [Alpine Linux container](https://registry.hub.docker.com/u/webhippie/alpine/).
 
 
 ## Versions
 
-* [latest](https://github.com/dockhippie/traefik/tree/master)
-  available as ```webhippie/traefik:latest``` at
-  [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
-* [1.1.2](https://github.com/dockhippie/traefik/tree/1.1.2)
-  available as ```webhippie/traefik:1.1.2``` at
-  [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
-* [1.1.1](https://github.com/dockhippie/traefik/tree/1.1.1)
-  available as ```webhippie/traefik:1.1.1``` at
-  [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
-* [1.1.0](https://github.com/dockhippie/traefik/tree/1.1.0)
-  available as ```webhippie/traefik:1.1.0``` at
-  [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
-* [1.0.3](https://github.com/dockhippie/traefik/tree/1.0.3)
-  available as ```webhippie/traefik:1.0.3``` at
-  [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
-* [1.0.2](https://github.com/dockhippie/traefik/tree/1.0.2)
-  available as ```webhippie/traefik:1.0.2``` at
-  [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
-* [1.0.1](https://github.com/dockhippie/traefik/tree/1.0.1)
-  available as ```webhippie/traefik:1.0.1``` at
-  [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
-* [1.0.0](https://github.com/dockhippie/traefik/tree/1.0.0)
-  available as ```webhippie/traefik:1.0.0``` at
-  [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
+* [latest](https://github.com/dockhippie/traefik/tree/master) available as ```webhippie/traefik:latest``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
+* [1.1.2](https://github.com/dockhippie/traefik/tree/1.1.2) available as ```webhippie/traefik:1.1.2``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
+* [1.1.1](https://github.com/dockhippie/traefik/tree/1.1.1) available as ```webhippie/traefik:1.1.1``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
+* [1.1.0](https://github.com/dockhippie/traefik/tree/1.1.0) available as ```webhippie/traefik:1.1.0``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
+* [1.0.3](https://github.com/dockhippie/traefik/tree/1.0.3) available as ```webhippie/traefik:1.0.3``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
+* [1.0.2](https://github.com/dockhippie/traefik/tree/1.0.2) available as ```webhippie/traefik:1.0.2``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
+* [1.0.1](https://github.com/dockhippie/traefik/tree/1.0.1) available as ```webhippie/traefik:1.0.1``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
+* [1.0.0](https://github.com/dockhippie/traefik/tree/1.0.0) available as ```webhippie/traefik:1.0.0``` at [Docker Hub](https://registry.hub.docker.com/u/webhippie/traefik/)
 
 
 ## Volumes
@@ -191,14 +174,7 @@ ENV TRAEFIK_ZOOKEEPER_SKIPVERIFY false
 ## Inherited environment variables
 
 ```bash
-ENV LOGSTASH_ENABLED false
-ENV LOGSTASH_HOST logstash
-ENV LOGSTASH_PORT 5043
-ENV LOGSTASH_CA /etc/ssl/logstash/certs/ca.pem # As string or filename
-ENV LOGSTASH_CERT /etc/ssl/logstash/certs/cert.pem # As string or filename
-ENV LOGSTASH_KEY /etc/ssl/logstash/private/cert.pem # As string or filename
-ENV LOGSTASH_TIMEOUT 15
-ENV LOGSTASH_OPTS
+ENV CRON_ENABLED false
 ```
 
 
@@ -220,5 +196,5 @@ MIT
 ## Copyright
 
 ```
-Copyright (c) 2015-2016 Thomas Boerger <http://www.webhippie.de>
+Copyright (c) 2015-2017 Thomas Boerger <http://www.webhippie.de>
 ```
