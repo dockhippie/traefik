@@ -20,6 +20,7 @@ RUN apk update && \
     go \
     git \
     nodejs \
+    nodejs-npm \
     python && \
   go get -u \
     github.com/Masterminds/glide && \
@@ -55,6 +56,7 @@ RUN apk update && \
     go \
     git \
     nodejs \
+    nodejs-npm \
     python && \
   rm -rf \
     /var/cache/apk/* \
